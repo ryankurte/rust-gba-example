@@ -1,6 +1,9 @@
 #![feature(lang_items)]
 #![feature(used)]
+#![feature(compiler_builtins_lib)]
 #![no_std]
+
+extern crate compiler_builtins;
 
 use core::ptr;
 
@@ -93,7 +96,8 @@ struct Header {
     start_code2: u32,   // Trampoline 2, b 80000e0, jumps to RESET_VECTOR
     boot_method: u8,    // 0 for ROM boot, 3 for multiplay
     slave_number: u8,   // Slave ID for multiplay boot
-    reserved: [u8; 26],
+    reserved: [u8; 14],
+    boot: [u32; 3],
 }
 
 #[link_section = ".header.header"]
@@ -125,7 +129,8 @@ static HEADER: Header = Header {
     start_code2: 0xEA000006,
     boot_method: 0x00,
     slave_number: 0x00,
-    reserved: [0u8; 26],
+    reserved: [0u8; 14],
+    boot: [0xe28f0001, 0xe12fff10, 0xf000f7ef],
 };
 
 #[link_section = ".header.reset_vector"]

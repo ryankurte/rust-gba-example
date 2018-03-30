@@ -1,4 +1,4 @@
-[target.thumbv7m-none-eabi]
+[target.arm7tdmi]
 rustflags = [
   "-C", "link-arg=-Tcart.ld",
   "-C", "linker=arm-none-eabi-ld",
@@ -6,4 +6,4 @@ rustflags = [
 ]
 
 [build]
-target = "thumbv7m-none-eabi"
+target = "arm7tdmi"

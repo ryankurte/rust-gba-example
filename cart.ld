@@ -18,7 +18,7 @@ SECTIONS
   .header :
   {
     KEEP(*(.header.header));
-    KEEP(*(.header.reset_vector));
+    /* KEEP(*(.header.reset_vector)); */
   } > ROM
 
   .text : { 

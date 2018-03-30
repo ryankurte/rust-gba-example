@@ -1,6 +1,7 @@
 
 APP=gba
-OUTDIR=target/thumbv7m-none-eabi/debug
+TARGET=arm7tdmi
+OUTDIR=target/$(TARGET)/debug
 
 all: build size fix
 
@@ -20,7 +21,10 @@ dump: build
 nm: build
 	arm-none-eabi-nm -C $(OUTDIR)/$(APP)
 
+debug:
+	arm-none-eabi-gdb $(OUTDIR)/$(APP) --tui --eval-command="tar rem :55555"
+
 clean:
-	rm -rf $(OUTDIR)/$(APP)
+	rm -rf $(OUTDIR)
 
 # 
