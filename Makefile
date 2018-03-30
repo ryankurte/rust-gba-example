@@ -1,18 +1,26 @@
 
 APP=gba
+OUTDIR=target/thumbv7m-none-eabi/debug
+
+all: build size fix
 
 build:
 	xargo rustc -- -C link-arg=-emain
 
+fix: build
+	arm-none-eabi-objcopy -v -O binary $(OUTDIR)/$(APP) $(OUTDIR)/$(APP).gba
+	gbafix $(OUTDIR)/$(APP).gba
+
 size: build
-	arm-none-eabi-size target/thumbv7m-none-eabi/debug/$(APP)
+	arm-none-eabi-size $(OUTDIR)/$(APP)
 
 dump: build
-	arm-none-eabi-objdump -CD target/thumbv7m-none-eabi/debug/$(APP)
+	arm-none-eabi-objdump -CDS $(OUTDIR)/$(APP)
 
 nm: build
-	arm-none-eabi-nm -C target/thumbv7m-none-eabi/debug/$(APP)
+	arm-none-eabi-nm -C $(OUTDIR)/$(APP)
 
 clean:
-	rm -rf target/thumbv7m-none-eabi/debug/$(APP)
+	rm -rf $(OUTDIR)/$(APP)
 
+# 

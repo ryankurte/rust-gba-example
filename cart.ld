@@ -20,12 +20,38 @@ SECTIONS
     KEEP(*(.header.header));
     KEEP(*(.header.reset_vector));
   } > ROM
-  .text : { *(.text .text.*); . = ALIGN(4); } > ROM
-  .rodata : { *(.rodata .rodata.*); . = ALIGN(4); } > ROM
+
+  .text : { 
+    *(.text .text.*); 
+    . = ALIGN(4); 
+  } > ROM
+
+  .rodata : { 
+    *(.rodata .rodata.*); 
+    . = ALIGN(4); 
+  } > ROM
 
   /* dynamic data placed in IWRAM */
-  .data : { *(.data); . = ALIGN(4); } > IWRAM
-  .bss : { *(.bss); . = ALIGN(4); } > IWRAM
+  .data : { 
+    _sidata = LOADADDR(.data);
+    . = ALIGN(4);
+    _sdata = .;
+
+    *(.data);
+
+    . = ALIGN(4);
+     _edata = .; 
+  } > IWRAM AT > ROM
+
+  .bss : {
+    . = ALIGN(4);
+    _sbss = .;
+
+    *(.bss); 
+
+    . = ALIGN(4); 
+    _ebss = .;  
+  } > IWRAM
 
   /* discard arm symbols */
   /DISCARD/ : { *(.ARM.exidx.*); }
