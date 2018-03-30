@@ -1,0 +1,9 @@
+[target.thumbv7m-none-eabi]
+rustflags = [
+  "-C", "link-arg=-Tgba_cart.ld",
+  "-C", "linker=arm-none-eabi-ld",
+  "-Z", "linker-flavor=ld",
+]
+
+[build]
+target = "thumbv7m-none-eabi"

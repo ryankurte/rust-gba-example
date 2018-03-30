@@ -1,0 +1,8 @@
+[package]
+name = "gba"
+version = "0.1.0"
+authors = ["Ryan Kurte <ryankurte@gmail.com>"]
+
+[dependencies]
+gba-rs = { path = "gba-rs" }
+

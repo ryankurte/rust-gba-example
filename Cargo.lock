@@ -1,0 +1,11 @@
+[[package]]
+name = "gba"
+version = "0.1.0"
+dependencies = [
+ "gba-rs 0.1.0",
+]
+
+[[package]]
+name = "gba-rs"
+version = "0.1.0"
+
