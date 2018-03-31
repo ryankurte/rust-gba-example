@@ -21,6 +21,12 @@ SECTIONS
 {
   . = __text_start;
 
+  /* static data stored in cart ROM */
+  .header :
+  {
+    KEEP(*(.header.header));
+    KEEP(*(.header.reset_vector));
+  } > ROM
 
   .crt0 :
 	{

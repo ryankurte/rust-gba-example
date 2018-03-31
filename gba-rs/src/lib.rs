@@ -119,6 +119,8 @@ const START_VECTOR: [u32; 8] = [0xe3a00301, 0xe5800208, 0xe3a00012, 0xe129f000,
                                 0xe59fd0b8, 0xe3a0001f, 0xe129f000, 0xe59fd0b0,
                             ];
 
+// Not currently correct
+// Loads SP from PC + 4, Adds 1 (for THUMB), BX to R0
 const RESET_JUMP: [u32; 3] = [0xe59fd004, 0xe28f0001, 0xe12fff10];
 
 #[link_section = ".header.header"]

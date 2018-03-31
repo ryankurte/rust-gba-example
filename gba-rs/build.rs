@@ -14,7 +14,7 @@ fn main() {
     File::create(out.join("gba_cart.ld"))
         .unwrap()
         .write_all(include_bytes!("src/gba_cart.ld"))
-        .unwrap()
+        .unwrap();
     File::create(out.join("gba.specs"))
         .unwrap()
         .write_all(include_bytes!("src/gba.specs"))
