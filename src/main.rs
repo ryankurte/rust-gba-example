@@ -2,6 +2,7 @@
 #![no_std]
 
 extern crate gba as gba;
+use gba::gfx::{Mode3, Colour};
 
 use core::ptr;
 use core::slice;
@@ -13,13 +14,25 @@ static mut BSS: u32 = 0;
 static mut DATA: u32 = 1;
 
 fn main() {
-    // force the compiler the keep these symbols in the final program
-    unsafe {      
-        *(0x04000000 as *mut u32)= 0x0403;
-        let buff : &mut [u16] = slice::from_raw_parts_mut(0x06000000 as *mut u16, 240 * 160);
+    let mut g = Mode3::new();
 
-        buff[120+80*240] = 0x001F;
-        buff[136+80*240] = 0x03E0;
-        buff[120+96*240] = 0x7C00;
+    g.enable();
+
+    for x in 0..240 {
+        for y in 45..55 {
+            g.set(x, y, Colour::rgb(0xFF, 0x00, 0x00));
+        }
+
+        for y in 65..75 {
+            g.set(x, y, Colour::rgb(0x00, 0xFF, 0x00));
+        }
+
+        for y in 85..95 {
+            g.set(x, y, Colour::rgb(0x00, 0x00, 0xFF));
+        }
     }
+
+    // Don't forget the forever loop!!
+    loop {};
 }
+
