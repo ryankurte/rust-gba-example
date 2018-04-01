@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["Ryan Kurte <ryankurte@gmail.com>"]
 
 [dependencies]
-#gba = { git = "https://github.com/ryankurte/rust-gba" }
-gba = { path = "../rust-gba" }
+gba = { git = "https://github.com/ryankurte/rust-gba" }
+#gba = { path = "../rust-gba" }

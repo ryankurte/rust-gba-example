@@ -1,6 +1,7 @@
 [[package]]
 name = "gba"
 version = "0.1.0"
+source = "git+https://github.com/ryankurte/rust-gba#61449d3b0a673fa78fa5c143202b952e0479cf94"
 dependencies = [
  "gcc 0.3.54 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
@@ -9,7 +10,7 @@ dependencies = [
 name = "gba-example"
 version = "0.1.0"
 dependencies = [
- "gba 0.1.0",
+ "gba 0.1.0 (git+https://github.com/ryankurte/rust-gba)",
 ]
 
 [[package]]
@@ -18,4 +19,5 @@ version = "0.3.54"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [metadata]
+"checksum gba 0.1.0 (git+https://github.com/ryankurte/rust-gba)" = "<none>"
 "checksum gcc 0.3.54 (registry+https://github.com/rust-lang/crates.io-index)" = "5e33ec290da0d127825013597dbdfc28bee4964690c7ce1166cbc2a7bd08b1bb"
