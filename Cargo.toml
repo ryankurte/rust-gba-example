@@ -1,8 +1,8 @@
 [package]
-name = "gba"
+name = "gba-example"
 version = "0.1.0"
 authors = ["Ryan Kurte <ryankurte@gmail.com>"]
 
 [dependencies]
-gba-rs = { path = "gba-rs" }
+gba = { git = "https://github.com/ryankurte/rust-gba" }
 

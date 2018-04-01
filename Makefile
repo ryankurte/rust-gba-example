@@ -1,5 +1,5 @@
 
-APP=gba
+APP=gba-example
 TARGET=arm7tdmi
 OUTDIR=target/$(TARGET)/debug
 
@@ -30,4 +30,3 @@ file:
 clean:
 	rm -rf target/
 
-# 

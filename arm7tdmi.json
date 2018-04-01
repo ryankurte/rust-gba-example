@@ -12,9 +12,9 @@
   "data-layout": "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64",
   "env": "",
   "executables": true,
-  "linker": "arm-none-eabi-gcc",
-  "linker-flavor": "gcc",
-  "llvm-target": "thumbv7m-none-eabi",
+  "linker": "arm-none-eabi-ld",
+  "linker-flavor": "ld",
+  "llvm-target": "arm-none-eabi",
   "max-atomic-width": 32,
   "os": "none",
   "panic-strategy": "abort",
@@ -26,5 +26,8 @@
   "pre-link-args": [
     "-mthumb",
     "-mthumb-interwork"
+  ],
+  "post-link-args": [
+    "-Tgba_cart.ld"
   ]
 }

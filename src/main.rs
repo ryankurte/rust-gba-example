@@ -1,7 +1,7 @@
 #![feature(lang_items)]
 #![no_std]
 
-extern crate gba_rs as gba;
+extern crate gba as gba;
 
 use core::ptr;
 use core::slice;
