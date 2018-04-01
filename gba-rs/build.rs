@@ -28,7 +28,7 @@ fn main() {
     build.flag("-mthumb-interwork");
     build.flag("-nostdlib");
 
-    build.clone().file("src/gba_crt0.s").compile("gba_crt0.o");
+    build.clone().file("src/gba_crt0.s").compile("gba_crt0");
     //build.clone().file("src/gba_main.c").compile("gba_main.o");
 
     // This doesn't seem to pick up the right targets...

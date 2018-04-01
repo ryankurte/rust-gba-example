@@ -25,16 +25,12 @@ SECTIONS
   .header :
   {
     KEEP(*(.header.header));
-    KEEP(*(.header.reset_vector));
+    /* KEEP(*(.header.reset_vector)); */
   } > ROM
 
-  .crt0 :
-	{
-		KEEP (*(.crt0 .crt0.*))
-		. = ALIGN(4);
-	} > ROM
-
   .text : { 
+    KEEP(*(.text.boot));
+    KEEP(*(.text.reset_handler));
     *(.text .text.*); 
     . = ALIGN(4); 
   } > ROM

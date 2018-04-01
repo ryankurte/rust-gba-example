@@ -1,5 +1,7 @@
 #![feature(lang_items)]
 #![feature(used)]
+#![feature(asm)]
+#![feature(global_asm)]
 #![feature(compiler_builtins_lib)]
 #![no_std]
 
@@ -36,9 +38,35 @@ impl Termination for () {
     }
 }
 
+// ARM 32-bit boot code (linked at .text.boot)
+// TODO: split to file, though a given macro can seemingly only contain one ISA.
+//global_asm!(include_str!("gba_crt0.S"));
+global_asm!("
+    .section .text.boot
+    .global  _boot
+    .cpu arm7tdmi
+    .align
+    .arm
+
+    _boot:
+        mov	r0, #0x4000000		@ REG_BASE
+        str	r0, [r0, #0x208]
+        mov	r0, #0x12			@ Switch to IRQ Mode
+        msr	cpsr, r0
+        ldr	sp, =__sp_irq		@ Set IRQ stack
+        mov	r0, #0x1f			@ Switch to System Mode
+        msr	cpsr, r0
+        ldr	sp, =__sp_usr		@ Set user stack
+        ldr r3, =reset          @ Load reset address
+        add	r3, r3, #5          @ +4 for this instr, +1 for thumb mode
+	    bx	r3                  @ Jump!
+");
+
 // Reset handler
+#[link_section = ".text.reset_handler"]
 #[no_mangle]
 pub unsafe extern "C" fn reset() -> ! {
+    
     extern "C" {
         fn main(argc: isize, argv: *const *const u8) -> isize;
 
@@ -48,6 +76,9 @@ pub unsafe extern "C" fn reset() -> ! {
         static mut _sdata: u32;
         static mut _edata: u32;
         static _sidata: u32;
+
+        static mut __sp_irq: u32;
+        static mut __sp_usr: u32;
     }
 
     zero_bss(&mut _sbss, &mut _ebss);
@@ -98,7 +129,7 @@ struct Header {
     slave_number: u8,   // Slave ID for multiplay boot
     reserved: [u8; 26],
     //boot: [u32; 8],
-    //jump: [u32; 3],
+    //jump: [u32; 2],
 }
 
 // Nintendo logo (required)
@@ -121,7 +152,7 @@ const START_VECTOR: [u32; 8] = [0xe3a00301, 0xe5800208, 0xe3a00012, 0xe129f000,
 
 // Not currently correct
 // Loads SP from PC + 4, Adds 1 (for THUMB), BX to R0
-const RESET_JUMP: [u32; 3] = [0xe59fd004, 0xe28f0001, 0xe12fff10];
+const RESET_JUMP: [u32; 2] = [0xe28f0001, 0xe12fff10];
 
 #[link_section = ".header.header"]
 #[used]
@@ -138,7 +169,7 @@ static HEADER: Header = Header {
     game_version: 0x00,
     complement: 0x00,
     checksum: 0x0000,
-    start_code2: 0xEA000006,
+    start_code2: 0xEA000008,
     boot_method: 0x00,
     slave_number: 0x00,
     reserved: [0u8; 26],
