@@ -2,9 +2,11 @@
 - https://japaric.github.io/embedonomicon/preface.html
 - https://japaric.github.io/embedonomicon/vector-table.html
 
+- https://en.wikipedia.org/wiki/Game_Boy_Advance
 - https://www.coranac.com/tonc/text/hardware.htm
-- https://www.coranac.com/tonc/text/setup.htm
-- https://www.coranac.com/tonc/text/first.htm
+
+- https://en.wikipedia.org/wiki/ARM7#ARM7TDMI
+- http://infocenter.arm.com/help/topic/com.arm.doc.ddi0210c/DDI0210B.pdf
 
 - https://csclub.uwaterloo.ca/~tbelaire/blog/posts/gba-rust-1.html
 - https://csclub.uwaterloo.ca/~tbelaire/blog/posts/gba-rust-2.html

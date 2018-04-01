@@ -58,7 +58,6 @@ global_asm!("
         msr	cpsr, r0
         ldr	sp, =__sp_usr		@ Set user stack
         ldr r3, =reset          @ Load reset address
-        add	r3, r3, #5          @ +4 for this instr, +1 for thumb mode
 	    bx	r3                  @ Jump!
 ");
 
