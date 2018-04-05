@@ -1,7 +1,7 @@
 
 APP=gba-example
 TARGET=arm7tdmi
-OUTDIR=target/$(TARGET)/debug
+OUTDIR=target/$(TARGET)/release
 VBA=vba
 
 all: build size fix
@@ -9,7 +9,7 @@ all: build size fix
 build: $(OUTDIR)/$(APP)
 
 $(OUTDIR)/$(APP):
-	xargo -v rustc -- -C link-arg=-emain --verbose
+	xargo -v rustc --release -- -C link-arg=-emain --verbose
 
 fix: $(OUTDIR)/$(APP).gba
 
