@@ -9,7 +9,7 @@ use gba::graphics::colour::Colour;
 const max: u8 = 0x1F;
 
 fn main() {
-    let mut gx = Graphics::new();
+    let mut gx = Graphics::<Mode3>::new();
 
     let rainbow: [Colour; 6] = [
         Colour::R,
