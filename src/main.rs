@@ -3,40 +3,24 @@
 
 extern crate gba as gba;
 use gba::graphics::Graphics;
-use gba::graphics::bitmap::{BitmapMode, Mode3};
+use gba::graphics::bitmap::{BitmapMode, Mode3, Mode5};
 use gba::graphics::colour::Colour;
+use gba::graphics::helpers::rainbow;
 
 const max: u8 = 0x1F;
 
 fn main() {
-    let mut gx = Graphics::<Mode3>::new();
-
-    let rainbow: [Colour; 6] = [
-        Colour::R,
-        Colour::O,
-        Colour::Y,
-        Colour::G,
-        Colour::B,
-        Colour::V,
-    ];
+    let mut m5 = Graphics::<Mode5>::new();
 
     {
-        let mut g = gx.active();
+        let mut g = m5.active();
 
-        for x in 0..240 {
-
-            let start = 160 / 2 - rainbow.len() * 10 / 2;
-
-            for c in 0..rainbow.len() {
-                let offset = start + 10 * c;
-                for y in offset..offset+10 {
-                    g.set(x, y, rainbow[c].u16());
-                }
-            }
-        }
+        rainbow(g, 10);
+        
+        g.swap();
     }
 
-    gx = gx.mode3();
+    let _ = m5.mode3();
 
     // Don't forget the forever loop!!
     loop {};

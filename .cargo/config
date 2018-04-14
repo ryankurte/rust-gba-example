@@ -5,3 +5,4 @@ rustflags = [
 
 [build]
 target = "arm7tdmi"
+
