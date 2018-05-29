@@ -9,7 +9,7 @@ all: build size fix
 build: $(OUTDIR)/$(APP)
 
 $(OUTDIR)/$(APP):
-	xargo -v rustc --release -- -C link-arg=-emain --verbose
+	RUST_TARGET_PATH=`pwd` xargo -v rustc --release -- -C link-arg=-emain --verbose
 
 fix: $(OUTDIR)/$(APP).gba
 
