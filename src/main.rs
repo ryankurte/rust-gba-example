@@ -5,9 +5,8 @@
 extern crate gba as gba;
 use gba::input::{IO, Keys};
 use gba::graphics::Graphics;
-use gba::graphics::bitmap::{BitmapMode, Mode3, Mode4, Mode5};
-use gba::graphics::colour::Colour;
-use gba::graphics::helpers::{rainbow, rainbow2};
+use gba::graphics::bitmap::{BitmapMode, Mode4};
+use gba::graphics::helpers::{rainbow2};
 
 const max: u8 = 0x1F;
 
