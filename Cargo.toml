@@ -6,4 +6,3 @@ authors = ["Ryan Kurte <ryankurte@gmail.com>"]
 [dependencies]
 #gba = { git = "https://github.com/ryankurte/rust-gba" }
 gba = { path = "../rust-gba" }
-
